@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AnnounceController!
+{% endblock %}
+
+{% block body %}
+
+	<div class="container mt-5 text-center" style="background-image:url({{announce.coverImage}}); height:390px;">
+		<div style="text-shadow: 1px 1px 10px black;">
+			{# <img src=" {{announce.coverImage}} " alt="cover image" srcset="" style="width:100%; height=40%;">#}
+			
+			<br class="my-5"> 
+			<h2 class="text text-white">
+				<strong>{{ announce.title }}</strong>
+			</h2>
+			<h1 class="text text-white">
+        		<strong> {{announce.rooms}} Chambres à {{ announce.price | number_format(0, ',', ' ') }}F / mois</strong>
+      		</h1>	
+
+		</div>
+	</div>
+
+	<div class="container my-5">
+		<div class="row">
+
+			<div class=" col-md-8 ">
+
+				<div class="card mb-3">
+					<h4 class="card-header">
+						Description de l'annonce
+					</h4>
+
+					<div class="card-body">
+						<p class="card-text">{{announce.description}}</p>
+						<p>Lieu :  <small><i class="fas fa-map-marker-alt"></i> </small>{{ announce.address}} </p>
+						
+					</div>
+
+					<div class="card-footer  text-muted text-center">
+						<p> Date de publication:  {{announce.createdAt | format_datetime('full', 'none', locale='fr')}} </p> {# 07/08/2019 # =>  format_datetime('short', 'none', locale='fr') #}
+					</div>
+				</div>
+
+				<div class="card mb-3">
+					<h6 class="card-header"> Plus d'images</h6>
+					
+					<div class="row my-2 mt-2 ml-2 mr-2">
+						{% for image in announce.images %}
+							<div class="col-sm-6 col-md-4  my-2 "><img src=" {{image.imageUrl}} " alt="room image" srcset=""  style="height:auto;width:100%;"></div>
+						{% endfor %}
+					</div>
+
+					<div class="card-footer  text-muted text-center">
+					
+					</div>
+				</div>
+
+			</div>
+
+			<div class=" col-md-4 ">
+				<div class="card border-secondary text-center mb-3" style="max-width: 20rem;">
+					<div class="card-header">Auteur de l'annonce</div>
+					<div class="card-body text-center">
+						<svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="280" aria-label="Placeholder: Auteur de l'annonce" focusable="false" role="img" preserveaspectratio="xMidYMid slice" viewbox="0 0 318 180" style="font-size:1.125rem;text-anchor:middle">
+							<rect width="100%" height="100%" fill="#868e96"></rect>
+							<text x="50%" y="50%" fill="#dee2e6" dy=".3em">Auteur de l'annonce </text>
+						</svg><br/>
+						<h4 class="card-title">Ibrahima Soumaré</h4>
+						<p class="card-text">
+							Contact :<em>
+								+221 77 039 44 22</em>
+						</p>
+						<p class="card-text">
+							Email :<em>
+								soumare@outlook.com</em>
+						</p>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+{% endblock %}
