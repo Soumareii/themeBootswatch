@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block body %}
+{# <style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
+
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code><a href="{{ '/var/www/html/location/src/Controller/AdminController.php'|file_link(0) }}">src/Controller/AdminController.php</a></code></li>
+        <li>Your template at <code><a href="{{ '/var/www/html/location/templates/admin/index.html.twig'|file_link(0) }}">templates/admin/index.html.twig</a></code></li>
+    </ul>
+</div> #}
+
+<div class="container my-5">
+    <div class="row">
+        <table class="table table-hover">
+        <thead>
+            <tr>
+            <th scope="col">Titre</th>
+            <th scope="col">Prix en Fcfa</th>
+            <th scope="col">Nbre de chambre</th>
+            <th scope="col">Adresse</th>
+            <th scope="col">Disponibilité</th>
+            <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        {% for announce in announces %}
+            <tbody>
+                <tr class="table-default">
+                <td> {{announce.title}} </td>
+                <td> {{announce.price}} </td>
+                <td> {{announce.rooms}} </td>
+                <td> {{announce.address}} </td>
+                <td> 
+                    {% if announce.isAvailable == 1 %}
+                        {#<i class="fas fa-toggle-on"></i> #}<input type="switch" class="custom-control-input" id="customSwitch1" checked>
+                    {% else %}
+                        {# <i class="fas fa-toggle-off"></i> #}<input type="checkbox" class="form-check-input" name="" id="" value="true" unchecked>
+                    {% endif %}
+                </td>
+                <td> 
+                    <div>
+                        <a href="{{path('announces_edit',{'slug': announce.slug})}}"><i class="fas fa-edit"></i></a>                   
+                        <a href="{{path('announces_delete',{'slug': announce.slug})}}" onClick="return confirm('Confirmation de suppression');"><i type="button" class="fas fa-trash"></i></a>
+                    </div> 
+                </td>
+                </tr>
+            </tbody>
+        {% endfor %}
+        </table>
+    </div>
+</div>
+
+
+
+{% endblock %}

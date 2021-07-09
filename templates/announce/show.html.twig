@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AnnounceController!
+{% block title %}Les Annonces
 {% endblock %}
 
 {% block body %}
 
-	<div class="container mt-5 text-center" style="background-image:url({{announce.coverImage}}); height:390px;">
+	<div class="container mt-5 text-center" style="background-image:url({{ asset('uploads/cover_images/'~ announce.coverImage) }}); height:390px;">
 		<div style="text-shadow: 1px 1px 10px black;">
 			{# <img src=" {{announce.coverImage}} " alt="cover image" srcset="" style="width:100%; height=40%;">#}
 			
@@ -46,7 +46,7 @@
 					
 					<div class="row my-2 mt-2 ml-2 mr-2">
 						{% for image in announce.images %}
-							<div class="col-sm-6 col-md-4  my-2 "><img src=" {{image.imageUrl}} " alt="room image" srcset=""  style="height:auto;width:100%;"></div>
+							<div class="col-sm-6 col-md-4  my-2 "><img src=" {{image.imageUrl}} " alt="room image" srcset=" {{image.description}} "  style="height:auto;width:100%;"></div>
 						{% endfor %}
 					</div>
 
@@ -75,6 +75,10 @@
 								soumare@outlook.com</em>
 						</p>
 					</div>
+				</div>
+				<div class="mb3">
+					<a href="{{path('announces_edit',{'slug': announce.slug})}}"><button class="btn btn-primary">Modifier l'annonce</button></a>
+					<a href="{{path('announces_delete',{'slug': announce.slug})}}"><button class="btn btn-primary">Supprimer l'annonce</button></a>
 				</div>
 
 			</div>

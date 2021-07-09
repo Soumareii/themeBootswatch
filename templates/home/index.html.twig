@@ -1,11 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Annonces
+{% block title %}Kaay Deuk!
 {% endblock %}
 
 {% block body %}
 
-	<div class="container my-5">
+	{# content:""; background:url('https://www.hotelgoeland.com/wp-content/uploads/chambre-panoramique/coin-nuit-suite-panoramique-1400x600.jpg'); opacity:0.5; top: 0; left:0; bottom:0; right:0; position:absolute; z-index:-1; #}  
+
+	{# Class Jumbotron #}
+	<div class="container mt-5" >
+		<div class="jumbotron my-4 text-white" style="background:url('https://www.hotelgoeland.com/wp-content/uploads/chambre-panoramique/coin-nuit-suite-panoramique-1400x600.jpg'); text-shadow: 1px 1px 10px black;">
+			<h1 class="display-3 text-white">Daalal ak diam ci KaayDeuk</h1>
+			<p class="lead" style="text-shadow: 1px 1px 4px black;">KaayDeuk est une plateforme web qui vous permet de publier ou de consulter des annonces de location de chambres ou d'appartements .</p>
+			<hr class="my-4">
+			<p style="text-shadow: 1px 1px 4px black;">Avec KaayDeuk louer des chambres devient facile et moins coûteux.</p>
+			<p class="lead">
+				<a class="btn btn-primary" href="{{path('app_home')}}" role="button">En savoir plus</a>
+			</p>
+		</div>
+	</div>
+
+	<h3 class="container my-5">Les dernières annonces ...</h3>
+
+  	<div class="container my-5">
 		<div class="row">
 			{% for announce in announces %}
 
@@ -42,17 +59,17 @@
 							{#<span class="badge badge-secondary"><strong>Disponible</strong> </span>  #}
 							<a href="{{path('announces_show',{'slug': announce.slug})}} " class="card-link">Contacter
 							</a>
-							<a href=" {{path('announces_show',{'slug': announce.slug})}} " class="card-link btn btn-primary">Détails</a>
+							<a href="{{path('announces_show',{'slug': announce.slug})}} " class="card-link btn btn-primary">Détails</a>
 						</div>
 						<div class="card-footer text-muted text-center">
 							{% set n = 0 %}
-							{% for comment in announce.comments %} 
+							{% for comment in announce.comments %}
 								{% if comment.id > 0 %}
 									{% set n = n + 1 %}
 								{% endif %}
 							{% endfor %}
 							{% if n == 0 %}
-								<small>{{ n }} commentaire | {{ announce.createdAt |format_datetime('short', 'none', locale='fr')}}</small>
+								<small>{{ n }} commentaire | {{ announce.createdAt | format_date(locale='fr')}}</small>
 							{% else %}
 								<small>{{ n }} commentaires | {{ announce.createdAt |format_datetime('short', 'none', locale='fr')}}</small></small>
 							{% endif %}
@@ -67,4 +84,8 @@
 
 		</div>
 	</div>
+
+
+
+
 {% endblock %}

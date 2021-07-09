@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{# {% form_theme form 'bootstrap_4_layout.html.twig' %} #}
+
+{% block title %}
+	Creating Announce
+{% endblock %}
+
+{% block body %}
+
+	<header class="container my-5 text-center bg-light">
+		<h2>Créer une nouvelle annonce</h2>
+	</header>
+	<section class="container jumbotron my-5">
+		<div class="mr-5 ml-5">
+			{{form_start(form)}}
+			{{form_widget(form)}}
+			<button type="submit" class="btn btn-primary">
+			{% if editMode %}
+				{{button_label | default ("Enregister")}}
+			{% else %}
+				{{button_label | default ("Ajouter l'annonce")}}
+			{% endif %}
+			</button>
+			{{form_end(form)}}
+		</div>
+	</section>
+
+{% endblock %}
