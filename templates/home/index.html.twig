@@ -33,11 +33,11 @@
 							{% if announce.rooms > 1 %}
 								<strong>{{announce.rooms}}
 									Chambres à
-									{{announce.price | number_format(0, ',', ' ') }}F / mois</strong>
+									{{announce.price|format_currency('XOF', locale='sn') }} / mois</strong>
 							{% else %}
 								<strong>{{announce.rooms}}
 									Chambre à
-									{{announce.price | number_format(0, ',', ' ') }}F / mois</strong>
+									{{announce.price|format_currency('XOF', locale='sn') }} / mois</strong> {#  number_format(0, ',', ' ') #}
 							{% endif %}
 							<br/>
 							<p class="text-primary">
@@ -69,9 +69,9 @@
 								{% endif %}
 							{% endfor %}
 							{% if n == 0 %}
-								<small>{{ n }} commentaire | {{ announce.createdAt | format_date(locale='fr')}}</small>
+								<small>{{ n }} commentaire | {{ announce.createdAt|ago(locale='fr') }}</small>
 							{% else %}
-								<small>{{ n }} commentaires | {{ announce.createdAt |format_datetime('short', 'none', locale='fr')}}</small></small>
+								<small>{{ n }} commentaires | {{ announce.createdAt|ago(locale='fr') }}</small></small>
 							{% endif %}
 
 						</div>

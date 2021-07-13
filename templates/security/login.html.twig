@@ -24,6 +24,7 @@
                 <div class="form-group">
                     <label for="inputPassword">Password</label>
                     <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                    <p><small><a href=" {{ path('app_forgot_password_request') }} ">Mot de passe oublié</a></small></p>
                 </div>
                 <div class="form-group">
                     <input type="hidden" name="_csrf_token"
@@ -49,10 +50,7 @@
             </fieldset>
         </form>
     </div>
-
-
-
-
-
 </form>
+
+
 {% endblock %}

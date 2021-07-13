@@ -14,7 +14,7 @@
 				<strong>{{ announce.title }}</strong>
 			</h2>
 			<h1 class="text text-white">
-        		<strong> {{announce.rooms}} Chambres à {{ announce.price | number_format(0, ',', ' ') }}F / mois</strong>
+        		<strong> {{announce.rooms}} Chambres à {{announce.price|format_currency('XOF', locale='sn') }} / mois</strong>
       		</h1>	
 
 		</div>
@@ -77,8 +77,8 @@
 					</div>
 				</div>
 				<div class="mb3">
-					<a href="{{path('announces_edit',{'slug': announce.slug})}}"><button class="btn btn-primary">Modifier l'annonce</button></a>
-					<a href="{{path('announces_delete',{'slug': announce.slug})}}"><button class="btn btn-primary">Supprimer l'annonce</button></a>
+					<a href="{{path('announces_edit',{'slug': announce.slug})}}"><button class="btn btn-primary">Modifier</button></a>
+			        <a href="{{path('announces_delete',{'slug': announce.slug})}}"><button class="btn btn-primary">Supprimer</button></a>
 				</div>
 
 			</div>
