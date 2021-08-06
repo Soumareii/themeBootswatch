@@ -76,10 +76,12 @@
 						</p>
 					</div>
 				</div>
-				<div class="mb3">
-					<a href="{{path('announces_edit',{'slug': announce.slug})}}"><button class="btn btn-primary">Modifier</button></a>
-			        <a href="{{path('announces_delete',{'slug': announce.slug})}}"><button class="btn btn-primary">Supprimer</button></a>
-				</div>
+				{% if app.user %}
+					<div class="mb3">
+						<a href="{{path('announces_edit',{'slug': announce.slug})}}"><button class="btn btn-primary">Modifier</button></a>
+						<a href="{{path('announces_delete',{'slug': announce.slug})}}"><button class="btn btn-primary">Supprimer</button></a>
+					</div>
+				{% endif %} 
 
 			</div>
 

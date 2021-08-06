@@ -43,17 +43,24 @@
               <li class="nav-item">
                 <a class="nav-link" href="{{path('announces_create')}}">Publier annonces</a>
               </li>
+              <li class="nav-item ">
+                <a href="#" class="nav-link">Gérer mes annonces</a>
+              </li> 
               {% endif %}
             </ul>
             {% if app.user %}
               <ul class="navbar-nav ml-auto">
-                <li class="nav-item ">
-                  <a href="#" class="nav-link">Gérer mes annonces</a>
-                </li> 
-                <li class="nav-item ">
-                  <a href="#" class="nav-link"><small> {{app.user.email}} </small> </a>
-                </li> 
-                <li class="nav-item ">
+                {% if is_granted('ROLE_ADMIN') %}
+                  <li class="nav-item ">
+                    <a href="{{path('admin')}}" class="nav-link"><small><strong> {{app.user.name}} </strong></small></a>
+                  </li> 
+                  <li class="nav-item ">
+                {% else %}
+                  <li class="nav-item ">
+                    <a href="#" class="nav-link"><small><strong>{{app.user.name}} </strong></small> </a>
+                  </li> 
+                  <li class="nav-item ">
+                {% endif %}
                   <a href=" {{path('app_logout')}} " class="nav-link">Deconnexion</a>
                 </li>  
               </ul>
